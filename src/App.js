@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
 import Telecentro from "./assets/img/Telecentro.pdf";
@@ -9,20 +9,40 @@ function App() {
 
   const[numPages, setnumPages] = useState(null);
   const[pageNumber, setPageNumber] = useState(1);
+  const[file, setFile] = useState(null);
 
   function onDocumentLoadSuccess({numPages}){
     setnumPages(numPages);
     setPageNumber(1);
   }
 
-  const share = () => {
-    navigator.share({
-      title:'Probando Share',
-      text: 'Probando Compartir',
-      url: {Telecentro}
-    })
-
+  useEffect(() => {
+    async function getArchivo(){
+      const archivo = await {Telecentro};
+      const blob = await archivo.blob;
+      const file = new File([blob], 'archivo.pdf', {type: 'archivo/pdf'});
+      setFile(file)
+    }
+    getArchivo();
+  })
+  
+  const archivoPdf = {
+    title: "Archivo pdf",
+    text: "Compartimos archivo",
+    files: [file]
   }
+
+  function compartirArchivo(objeto){
+    if(navigator.share){
+      navigator
+      .share(objeto)
+      .then(() => console.log("Exito"))
+      .catch(err => console.log("Error", err))
+    }else{
+      console.log("No soportado");
+    }
+  }
+ 
 
   return (
     <>
@@ -53,7 +73,7 @@ function App() {
         </TransformWrapper>
           
         <h4>Compartir Archivo</h4>
-        <button onClick={share}>Compartir</button>
+        <button onClick={() => compartirArchivo(archivoPdf)}>Compartir</button>
     </>
   );
 }
