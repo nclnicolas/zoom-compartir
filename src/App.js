@@ -72,7 +72,7 @@ function App() {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivo</h4>
+        <h4>Compartir Archivito</h4>
         <button onClick={() => compartirArchivo(archivoPdf)}>Compartir</button>
     </>
   );
