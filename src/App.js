@@ -1,24 +1,60 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
+import Telecentro from "./assets/img/Telecentro.pdf";
+
 
 function App() {
+
+  const[numPages, setnumPages] = useState(null);
+  const[pageNumber, setPageNumber] = useState(1);
+
+  function onDocumentLoadSuccess({numPages}){
+    setnumPages(numPages);
+    setPageNumber(1);
+  }
+
+  const share = () => {
+    navigator.share({
+      title:'Probando Share',
+      text: 'Probando Compartir',
+      url: {Telecentro}
+    })
+
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+      Holis
+      <TransformWrapper
+         defaultScale={1}
+          /* defaultPositionX={100}
+          defaultPositionY={200} */
+          
+          alignmentAnimation={{ sizeX:50}}
+          panning={{ disabled: true , velocityDisabled: true }} //desactiva vista panoramica 
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <TransformComponent>
+      <div >
+      <Document className="document-scroll" file={Telecentro} onLoadSuccess={onDocumentLoadSuccess}>
+        {Array.from(
+          new Array(numPages),
+          (el, index) => (
+            <Page 
+            key={`page_${index+1}`}
+            pageNumber={index+1}
+            />
+          )
+        )}
+      </Document>
+      </div>
+      </TransformComponent>
+        </TransformWrapper>
+          
+        <h4>Compartir Archivo</h4>
+        <button onClick={share}>Compartir</button>
+    </>
   );
 }
 
