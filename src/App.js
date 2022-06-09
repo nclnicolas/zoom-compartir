@@ -9,37 +9,24 @@ function App() {
 
   const[numPages, setnumPages] = useState(null);
   const[pageNumber, setPageNumber] = useState(1);
-  const[file, setFile] = useState(null);
+  const[files, setFiles] = useState([]);
 
   function onDocumentLoadSuccess({numPages}){
     setnumPages(numPages);
     setPageNumber(1);
   }
 
-  useEffect(() => {
-    async function getArchivo(){
-      const archivo = await {Telecentro};
-      const blob = await archivo.blob;
-      const file = new File([blob], 'archivo.pdf', {type: 'archivo/pdf'});
-      setFile(file)
-    }
-    getArchivo();
-  })
-  
-  const archivoPdf = {
-    title: "Archivo pdf",
-    text: "Compartimos archivo",
-    files: [file]
-  }
 
-  function compartirArchivo(objeto){
-    if(navigator.share){
-      navigator
-      .share(objeto)
-      .then(() => console.log("Exito"))
-      .catch(err => console.log("Error", err))
+  const shareData = async () => {
+    if(navigator.share && navigator.canShare({files:files})){
+      await navigator.share({
+        title:'Probando Share',
+        text: 'Probando Compartir',
+        url: 'https://www.youtube.com',
+        files: files
+      })
     }else{
-      console.log("No soportado");
+      console.log('No paso');
     }
   }
  
@@ -73,9 +60,38 @@ function App() {
         </TransformWrapper>
           
         <h4>Compartir Archivito</h4>
-        <button onClick={() => compartirArchivo(archivoPdf)}>Compartir</button>
+        <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
+        <button onClick={() => {shareData()}}>Compartir</button>
     </>
   );
 }
 
 export default App;
+
+
+/* useEffect(() => {
+    async function getArchivo(){
+      const archivo = await {Telecentro};
+      const blob = await archivo.blob;
+      const file = new File([blob], 'archivo.pdf', {type: 'archivo/pdf'});
+      setFile(file)
+    }
+    getArchivo();
+  })
+  
+  const archivoPdf = {
+    title: "Archivo pdf",
+    text: "Compartimos archivo",
+    files: [file]
+  }
+
+  function compartirArchivo(objeto){
+    if(navigator.share){
+      navigator
+      .share(objeto)
+      .then(() => console.log("Exito"))
+      .catch(err => console.log("Error", err))
+    }else{
+      console.log("No soportado");
+    }
+  } */
