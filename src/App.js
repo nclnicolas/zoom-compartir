@@ -25,7 +25,7 @@ function App() {
           enctype:"multipart/form-data"
         },
         title:'Probando Share',
-        text: "body",
+        text: "Hola como estas",
         files: files[{
           name:'records',
           accept: ['text/pdf', '.pdf']
