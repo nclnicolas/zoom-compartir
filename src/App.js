@@ -22,6 +22,8 @@ function App() {
       await navigator.share({
         title:'Probando Share',
         text: "Hola como estas",
+        name: "records",
+        accept: ["text/pdf", ".pdf"],
         files: files
       })
     }else{
