@@ -30,8 +30,6 @@ function App() {
  const shareData = () => {
   if (navigator.canShare && navigator.canShare({ files: files })) {
     navigator.share({
-      "method": "POST",
-      "enctype": "multipart/form-data",
       files: files,
       title: 'Vacation Pictures',
       text: 'Photos from September 27 to October 14.',
@@ -71,7 +69,7 @@ function App() {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivo</h4>
+        <h4>Compartir Archivito</h4>
         <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button>
     </>
