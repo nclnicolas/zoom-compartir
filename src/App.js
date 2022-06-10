@@ -9,25 +9,62 @@ function App() {
 
   const[numPages, setnumPages] = useState(null);
   const[pageNumber, setPageNumber] = useState(1);
-  const[files, setFiles] = useState([]);
+  const[files, setFiles] = useState(null);
 
   function onDocumentLoadSuccess({numPages}){
     setnumPages(numPages);
     setPageNumber(1);
   }
 
+  useEffect(() =>{
+    async function getImages(){
+      const imagen = await fetch(Telecentro)
+      const blob = await imagen.blob();
+      const files = new File([blob], 'Pasamos archivo.pdf', {type: 'archivo/pdf'});
+      setFiles(files)
+    }
+    getImages()
+  }, [])
+
+
+  const archivo ={
+    title: "hola buen dia",
+    text: "hola hola",
+    files: [files]
+  }
+
+  function shareData(obj){
+    if(navigator.share){
+      navigator
+      .share(obj)
+      .then(() => console.log('Exito'))
+      .catch(error => console.log('fallo', error));
+    }else{
+      console.log('No soportado');
+    }
+  }
+
+
+
+
+
+
+  
 
  /*  const shareData = async () => {
     if(navigator.canShare && navigator.canShare({files:files})){
       await navigator.share({
-        title: files.name,
-        files: files
+        title: 'Hola buen dia',
+        text: 'Hola hola',
+        files: [files]
       })
     }else{
       console.log('No paso');
     }
   } */
- const shareData = () => {
+
+
+ /* const shareData = () => {
   if (navigator.canShare && navigator.canShare({ files: files })) {
     navigator.share({
       files: files,
@@ -39,7 +76,7 @@ function App() {
   } else {
     console.log(`Your system doesn't support sharing files.`);
   }
-}
+} */
 
   return (
     <>
@@ -70,8 +107,8 @@ function App() {
         </TransformWrapper>
           
         <h4>Compartir Archivito</h4>
-        <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
-        <button onClick={() => {shareData()}}>Compartir</button>
+        {/* <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input> */}
+        <button onClick={() => {shareData(archivo)}}>Compartir</button>
     </>
   );
 }
