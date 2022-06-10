@@ -30,6 +30,8 @@ function App() {
  const shareData = () => {
   if (navigator.canShare && navigator.canShare({ files: files })) {
     navigator.share({
+      "method": "POST",
+      "enctype": "multipart/form-data",
       files: files,
       title: 'Vacation Pictures',
       text: 'Photos from September 27 to October 14.',
