@@ -24,6 +24,7 @@ function App() {
         text: "Hola como estas",
         name: "records",
         accept: ["text/pdf", ".pdf"],
+        enctype: "multipart/form-data",
         files: files
       })
     }else{
@@ -60,7 +61,7 @@ function App() {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivito</h4>
+        <h4>Compartir Archivo</h4>
         <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button>
     </>
