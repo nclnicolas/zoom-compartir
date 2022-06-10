@@ -18,11 +18,10 @@ function App() {
 
 
   const shareData = async () => {
-    if(navigator.share && navigator.canShare({files:files})){
+    if(navigator.canShare && navigator.canShare({files:files})){
       await navigator.share({
         title:'Probando Share',
         text: 'Probando Compartir',
-        url: 'https://www.youtube.com',
         files: files
       })
     }else{
@@ -59,7 +58,7 @@ function App() {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivito</h4>
+        <h4>Compartir Archivo</h4>
         <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button>
     </>
