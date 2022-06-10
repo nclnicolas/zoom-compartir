@@ -17,17 +17,29 @@ function App() {
   }
 
 
-  const shareData = async () => {
+ /*  const shareData = async () => {
     if(navigator.canShare && navigator.canShare({files:files})){
       await navigator.share({
-        title: files.values,
+        title: files.name,
         files: files
       })
     }else{
       console.log('No paso');
     }
+  } */
+ const shareData = () => {
+  if (navigator.canShare && navigator.canShare({ files: files })) {
+    navigator.share({
+      files: files,
+      title: 'Vacation Pictures',
+      text: 'Photos from September 27 to October 14.',
+    })
+    .then(() => console.log('Share was successful.'))
+    .catch((error) => console.log('Sharing failed', error));
+  } else {
+    console.log(`Your system doesn't support sharing files.`);
   }
- 
+}
 
   return (
     <>
