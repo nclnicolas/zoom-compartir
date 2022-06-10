@@ -20,10 +20,6 @@ function App() {
   const shareData = async () => {
     if(navigator.canShare && navigator.canShare({files:files})){
       await navigator.share({
-        share_target:{
-          method:'POST',
-          enctype:"multipart/form-data"
-        },
         title:'Probando Share',
         text: "Hola como estas",
         files: files[{
@@ -69,7 +65,7 @@ function App() {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivito</h4>
+        <h4>Compartir Archivo</h4>
         <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button>
     </>
