@@ -20,9 +20,20 @@ function App() {
   const shareData = async () => {
     if(navigator.canShare && navigator.canShare({files:files})){
       await navigator.share({
+        share_target:{
+          method:'POST',
+          enctype:"multipart/form-data"
+        },
         title:'Probando Share',
-        text: 'Probando Compartir',
-        files: files
+        text: "body",
+        files: files[{
+          name:'records',
+          accept: ['text/pdf', '.pdf']
+        },
+      {
+        name: "graphs",
+        accept: "image/svg+xml"
+      }]
       })
     }else{
       console.log('No paso');
@@ -58,7 +69,7 @@ function App() {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivo</h4>
+        <h4>Compartir Archivito</h4>
         <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button>
     </>
