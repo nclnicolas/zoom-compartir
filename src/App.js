@@ -22,14 +22,7 @@ function App() {
       await navigator.share({
         title:'Probando Share',
         text: "Hola como estas",
-        files: files[{
-          name:'records',
-          accept: ['text/pdf', '.pdf']
-        },
-      {
-        name: "graphs",
-        accept: "image/svg+xml"
-      }]
+        files: files
       })
     }else{
       console.log('No paso');
@@ -65,7 +58,7 @@ function App() {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivo</h4>
+        <h4>Compartir Archivito</h4>
         <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button>
     </>
