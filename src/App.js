@@ -78,6 +78,7 @@ function App() {
   }
 } */
 
+const [doubleStep, setDoubleStep] = useState(0.7);
   return (
     <>
       Holis
@@ -91,16 +92,25 @@ function App() {
 
           /* alignmentAnimation={{ disabled: true}} */
           panning={{ disabled: true,  velocityDisabled: true }} //desactiva vista panoramica 
-          doubleClick={{mode: 'reset'}}
-
+          doubleClick={{step: doubleStep}}
+            onPanningStop={(e) => {
+              if (e.state.scale !== 1) {
+                setDoubleStep(-0.7);
+              }
+              else {
+                setDoubleStep(0.7);
+              }
+  }}
+          
         >
-          <TransformComponent>
+          <TransformComponent >
       <div >
       <Document className="document-scroll" file={Telecentro} onLoadSuccess={onDocumentLoadSuccess}>
         {Array.from(
           new Array(numPages),
           (el, index) => (
             <Page 
+            
             key={`page_${index+1}`}
             pageNumber={index+1}
             />
