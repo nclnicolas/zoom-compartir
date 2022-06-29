@@ -6,6 +6,16 @@
   height: 40vmin;
   pointer-events: none;
 }
+.document-scroll{
+  overflow-y:auto;
+  width: 100% !important;
+  
+}
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  width: 80% !important;
+  height: 100% !important;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -22,6 +32,16 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+.document-scroll{
+  overflow-y:auto;
+  width: 100% !important;
+  
+}
+.react-pdf__Page__canvas {
+  margin: 0 auto;
+  width: 80% !important;
+  height: 100% !important;
 }
 
 .App-link {

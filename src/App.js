@@ -20,7 +20,7 @@ function App() {
     async function getImages(){
       const imagen = await fetch('http://localhost:3001/Telecentro.pdf')
       const blob = await imagen.blob();
-      const files = new File([blob], 'Pasamos archivo.pdf', {type: 'archivo/pdf'});
+      const files = new File([blob], 'Telecentro.pdf', {type: 'title/pdf'});
       setFiles(files)
     }
     getImages()
@@ -83,11 +83,16 @@ function App() {
       Holis
       <TransformWrapper
          defaultScale={1}
-          /* defaultPositionX={100}
-          defaultPositionY={200} */
-          
-          alignmentAnimation={{ sizeX:50}}
-          panning={{ disabled: true , velocityDisabled: true }} //desactiva vista panoramica 
+         /* initialPositionX={100}
+         initialPositionY={200} */
+         /* disabled={true} */
+        
+       
+
+          /* alignmentAnimation={{ disabled: true}} */
+          panning={{ disabled: true,  velocityDisabled: true }} //desactiva vista panoramica 
+          doubleClick={{mode: 'reset'}}
+
         >
           <TransformComponent>
       <div >
