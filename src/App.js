@@ -78,7 +78,7 @@ function App() {
   }
 } */
 
-const [doubleStep, setDoubleStep] = useState(0.7);
+const [doubleStep, setDoubleStep] = useState(-1);
   return (
     <>
       Holis
@@ -95,10 +95,10 @@ const [doubleStep, setDoubleStep] = useState(0.7);
           doubleClick={{step: doubleStep}}
             onPanningStop={(e) => {
               if (e.state.scale !== 1) {
-                setDoubleStep(-0.7);
+                setDoubleStep(-2);
               }
               else {
-                setDoubleStep(0.7);
+                setDoubleStep(1);
               }
   }}
           
