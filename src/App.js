@@ -78,7 +78,7 @@ function App() {
   }
 } */
 
-const [doubleStep, setDoubleStep] = useState(-1);
+const [doubleStep, setDoubleStep] = useState({scale: -1});
   return (
     <>
       Holis
@@ -87,15 +87,14 @@ const [doubleStep, setDoubleStep] = useState(-1);
          /* initialPositionX={100}
          initialPositionY={200} */
          /* disabled={true} */
-        
-       
-
+         centerOnInit
+         centerZoomedOut
           /* alignmentAnimation={{ disabled: true}} */
           panning={{ disabled: true,  velocityDisabled: true }} //desactiva vista panoramica 
           doubleClick={{step: doubleStep}}
-            onPanningStop={(e) => {
+          onPanningStart={(e) => {
               if (e.state.scale !== 1) {
-                setDoubleStep(-2);
+                setDoubleStep(-1);
               }
               else {
                 setDoubleStep(1);
@@ -109,6 +108,7 @@ const [doubleStep, setDoubleStep] = useState(-1);
         {Array.from(
           new Array(numPages),
           (el, index) => (
+          
             <Page 
             
             key={`page_${index+1}`}
