@@ -78,10 +78,10 @@ function App() {
   }
 } */
 
-const [doubleStep, setDoubleStep] = useState({scale: -1});
+const [scale, setScale] = useState('reset');
   return (
     <>
-      Holis
+      Holanda
       <TransformWrapper
          defaultScale={1}
          /* initialPositionX={100}
@@ -91,13 +91,14 @@ const [doubleStep, setDoubleStep] = useState({scale: -1});
          centerZoomedOut
           /* alignmentAnimation={{ disabled: true}} */
           panning={{ disabled: true,  velocityDisabled: true }} //desactiva vista panoramica 
-          doubleClick={{step: doubleStep}}
-          onPanningStart={(e) => {
-              if (e.state.scale !== 1) {
-                setDoubleStep(-1);
+
+          doubleClick={{mode: scale}}
+          onPanningStop={(e) => {
+              if (e.instance.setup.doubleClick.mode !== 'zoomIn' ) {
+                setScale('zoomIn');
               }
               else {
-                setDoubleStep(1);
+                setScale('zoomOut');
               }
   }}
           
