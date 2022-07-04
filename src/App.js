@@ -9,27 +9,19 @@ function App() {
 
   const[numPages, setnumPages] = useState(null);
   const[pageNumber, setPageNumber] = useState(1);
-  const[files, setFiles] = useState(null);
+  const[files, setFiles] = useState([]);
 
   function onDocumentLoadSuccess({numPages}){
     setnumPages(numPages);
     setPageNumber(1);
   }
 
-
-
-
-
-
-
-  
-
   const shareData = async () => {
-    if(navigator.canShare && navigator.canShare({files:files})){
+    if(navigator.share && navigator.canShare({files:files})){
       await navigator.share({
         title: 'Hola buen dia',
         text: 'Hola hola',
-        files: [files]
+        files: files
       })
     }else{
       console.log('No paso');
@@ -37,21 +29,8 @@ function App() {
   }
 
 
- /* const shareData = () => {
-  if (navigator.canShare && navigator.canShare({ files: files })) {
-    navigator.share({
-      files: files,
-      title: 'Vacation Pictures',
-      text: 'Photos from September 27 to October 14.',
-    })
-    .then(() => console.log('Share was successful.'))
-    .catch((error) => console.log('Sharing failed', error));
-  } else {
-    console.log(`Your system doesn't support sharing files.`);
-  }
-} */
 
-const [scale, setScale] = useState('reset');
+const [scale, setScale] = useState();
   return (
     <>
       Holis
@@ -95,9 +74,9 @@ const [scale, setScale] = useState('reset');
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivo</h4>
-        {/* <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
-        <button onClick={() => {shareData(archivo)}}>Compartir</button> */}
+        <h4>Compartir Archivito</h4>
+        <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
+        <button onClick={() => {shareData()}}>Compartir</button>
     </>
   );
 }
