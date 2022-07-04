@@ -16,33 +16,6 @@ function App() {
     setPageNumber(1);
   }
 
-  useEffect(() =>{
-    async function getImages(){
-      const imagen = await fetch('http://localhost:3001/Telecentro.pdf')
-      const blob = await imagen.blob();
-      const files = new File([blob], 'Telecentro.pdf', {type: 'title/pdf'});
-      setFiles(files)
-    }
-    getImages()
-  }, [])
-
-
-  const archivo ={
-    title: "hola buen dia",
-    text: "hola hola",
-    files: [files]
-  }
-
-  function shareData(obj){
-    if(navigator.share){
-      navigator
-      .share(obj)
-      .then(() => console.log('Exito'))
-      .catch(error => console.log('fallo', error));
-    }else{
-      console.log('No soportado');
-    }
-  }
 
 
 
@@ -51,7 +24,7 @@ function App() {
 
   
 
- /*  const shareData = async () => {
+  const shareData = async () => {
     if(navigator.canShare && navigator.canShare({files:files})){
       await navigator.share({
         title: 'Hola buen dia',
@@ -61,7 +34,7 @@ function App() {
     }else{
       console.log('No paso');
     }
-  } */
+  }
 
 
  /* const shareData = () => {
@@ -81,14 +54,14 @@ function App() {
 const [scale, setScale] = useState('reset');
   return (
     <>
-      Holanda
+      Holis
       <TransformWrapper
          defaultScale={1}
          /* initialPositionX={100}
          initialPositionY={200} */
          /* disabled={true} */
-         centerOnInit
-         centerZoomedOut
+         /* centerOnInit
+         centerZoomedOut */
           /* alignmentAnimation={{ disabled: true}} */
           panning={{ disabled: true,  velocityDisabled: true }} //desactiva vista panoramica 
 
@@ -123,8 +96,8 @@ const [scale, setScale] = useState('reset');
         </TransformWrapper>
           
         <h4>Compartir Archivo</h4>
-        {/* <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input> */}
-        <button onClick={() => {shareData(archivo)}}>Compartir</button>
+        {/* <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
+        <button onClick={() => {shareData(archivo)}}>Compartir</button> */}
     </>
   );
 }
