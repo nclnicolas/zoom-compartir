@@ -34,7 +34,7 @@ const [scale, setScale] = useState();
 const [pann, setPann] = useState(true);
   return (
     <>
-      Holanda
+      Holis
       <TransformWrapper
          defaultScale={1}
          /* initialPositionX={100}
@@ -46,7 +46,7 @@ const [pann, setPann] = useState(true);
           panning={{disabled:pann, velocityDisabled: true }} //desactiva vista panoramica
 
           doubleClick={{mode: scale}}
-          onWheel={(e) => {
+          onZoomStart={(e) => {
             if(e.instance.setup.doubleClick.mode !== 'zoomIn'){
               setPann(false)
             }else{
