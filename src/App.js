@@ -32,6 +32,10 @@ function App() {
 
 const [scale, setScale] = useState();
 const [pann, setPann] = useState(true);
+
+const scrollear = () => {
+  setPann(!pann)
+}
   return (
     <>
       Holis
@@ -46,17 +50,18 @@ const [pann, setPann] = useState(true);
           panning={{disabled:pann, velocityDisabled: true }} //desactiva vista panoramica
 
           doubleClick={{mode: scale}}
-          onZoomStart={(e) => {
+          /* onZoomStart={(e) => {
             if(e.instance.setup.doubleClick.mode !== 'zoomIn'){
               setPann(false)
             }else{
               setPann(true)
             }
-          }}
+          }} */
 
           onPanningStop={(e) => {
               if (e.instance.setup.doubleClick.mode !== 'zoomIn' ) {
                 setScale('zoomIn')
+                scrollear();
               }
               else {
                 setScale('reset')
