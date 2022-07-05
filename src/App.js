@@ -31,6 +31,7 @@ function App() {
 
 
 const [scale, setScale] = useState();
+const [pann, setPann] = useState();
   return (
     <>
       Holis
@@ -42,15 +43,17 @@ const [scale, setScale] = useState();
          /* centerOnInit
          centerZoomedOut */
           /* alignmentAnimation={{ disabled: true}} */
-          panning={{ disabled: true,  velocityDisabled: true }} //desactiva vista panoramica 
+          panning={{ disabled: pann,  velocityDisabled: true }} //desactiva vista panoramica
 
           doubleClick={{mode: scale}}
           onPanningStop={(e) => {
               if (e.instance.setup.doubleClick.mode !== 'zoomIn' ) {
                 setScale('zoomIn');
+                setPann(false)
               }
               else {
                 setScale('zoomOut');
+                setPann(true)
               }
   }}
           
