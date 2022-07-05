@@ -31,10 +31,10 @@ function App() {
 
 
 const [scale, setScale] = useState();
-const [pann, setPann] = useState();
+const [pann, setPann] = useState(true);
   return (
     <>
-      Holis
+      Holanda
       <TransformWrapper
          defaultScale={1}
          /* initialPositionX={100}
@@ -48,11 +48,11 @@ const [pann, setPann] = useState();
           doubleClick={{mode: scale}}
           onPanningStop={(e) => {
               if (e.instance.setup.doubleClick.mode !== 'zoomIn' ) {
-                setScale('zoomIn');
+                setScale('zoomIn') &&
                 setPann(false)
               }
               else {
-                setScale('zoomOut');
+                setScale('reset') && 
                 setPann(true)
               }
   }}
