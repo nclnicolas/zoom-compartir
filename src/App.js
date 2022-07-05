@@ -43,17 +43,23 @@ const [pann, setPann] = useState(true);
          /* centerOnInit
          centerZoomedOut */
           /* alignmentAnimation={{ disabled: true}} */
-          panning={{ disabled: pann,  velocityDisabled: true }} //desactiva vista panoramica
+          panning={{disabled:pann, velocityDisabled: true }} //desactiva vista panoramica
 
           doubleClick={{mode: scale}}
+          onWheel={(e) => {
+            if(e.instance.setup.doubleClick.mode !== 'zoomIn'){
+              setPann(false)
+            }else{
+              setPann(true)
+            }
+          }}
+
           onPanningStop={(e) => {
               if (e.instance.setup.doubleClick.mode !== 'zoomIn' ) {
-                setScale('zoomIn') &&
-                setPann(false)
+                setScale('zoomIn')
               }
               else {
-                setScale('reset') && 
-                setPann(true)
+                setScale('reset')
               }
   }}
           
