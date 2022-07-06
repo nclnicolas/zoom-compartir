@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import Telecentro from "./assets/img/Telecentro.pdf";
+/* import Telecentro from "./assets/img/Telecentro.pdf"; */
 
 
 function App() {
