@@ -2,7 +2,7 @@ import './App.css';
 import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import Telecentro from "../public/Telecentro.pdf";
+import Telecentro from "./assets/img/Telecentro.pdf"
 
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     async function getArchivo(){
-      const imagen = await fetch('http://localhost:3000/Telecentro.pdf');
+      const imagen = await fetch('./assets/img/Telecentro.pdf');
       const blob = await imagen.blob();
       const files = new File([blob], 'archivo.pdf', {type: 'archivo/pdf'});
       setFiles(files);
