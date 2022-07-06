@@ -30,9 +30,8 @@ function App() {
 
   useEffect(() => {
     async function getArchivo(){
-      const imagen = await fetch('https://picsum.photos/200/300');
-      const blob = await imagen.blob();
-      const files = new File([blob], 'image.png', {type: 'image/png'});
+      const blob = await {Telecentro};
+      const files = new File([blob], 'servicio.pdf', {type: 'application/pdf'});
       setFiles(files);
     }
     getArchivo();
