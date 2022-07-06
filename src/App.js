@@ -30,7 +30,7 @@ function App() {
 
   useEffect(() => {
     async function getArchivo(){
-      const blob = await {Telecentro};
+      const blob = await Telecentro;
       const files = new File([blob], 'servicio.pdf', {type: 'application/pdf'});
       setFiles(files);
     }
@@ -116,7 +116,7 @@ const [pann, setPann] = useState();
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivoo</h4>
+        <h4>Compartir Archivito</h4>
         {/* <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button> */}
         <button onClick={() => shareAcross(archivo)}>Compartir</button>
