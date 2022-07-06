@@ -9,14 +9,14 @@ function App() {
 
   const[numPages, setnumPages] = useState(null);
   const[pageNumber, setPageNumber] = useState(1);
-  const[files, setFiles] = useState([]);
+  const[files, setFiles] = useState(null);
 
   function onDocumentLoadSuccess({numPages}){
     setnumPages(numPages);
     setPageNumber(1);
   }
 
-  const shareData = async () => {
+  /* const shareData = async () => {
     if(navigator.share && navigator.canShare({files:files})){
       await navigator.share({
         title: 'Hola buen dia',
@@ -26,16 +26,43 @@ function App() {
     }else{
       console.log('No paso');
     }
+  } */
+
+  useEffect(() => {
+    async function getArchivo(){
+      const imagen = await fetch('http://localhost:3000/Telecentro');
+      const blob = await imagen.blob();
+      const files = new File([blob], 'archivo.pdf', {type: 'archivo/pdf'});
+      setFiles(files);
+    }
+    getArchivo();
+  }, [])
+
+  const archivo ={
+    title: 'Web share con archivo',
+    text: 'Ademas de textos',
+    url: 'https://nico.com',
+    files:[files]
+  }
+
+  function shareAcross(objeto){
+    if(navigator.share){
+      navigator
+      .share(objeto)
+      .then(() => console.log('Excelente'))
+      .catch((err) => console.log(err))
+    }else{
+      console.log('No soportado');
+    }
   }
 
 
+const [scale, setScale] = useState('reset');
+const [pann, setPann] = useState();
 
-const [scale, setScale] = useState();
-const [pann, setPann] = useState(true);
-
-const scrollear = () => {
+/* const scrollear = () => {
   setPann(!pann)
-}
+} */
   return (
     <>
       Holis
@@ -47,24 +74,26 @@ const scrollear = () => {
          /* centerOnInit
          centerZoomedOut */
           /* alignmentAnimation={{ disabled: true}} */
-          panning={{disabled:pann, velocityDisabled: true }} //desactiva vista panoramica
+          panning={{disabled:pann, velocityDisabled: true}} //desactiva vista panoramica
 
           doubleClick={{mode: scale}}
-          /* onZoomStart={(e) => {
-            if(e.instance.setup.doubleClick.mode !== 'zoomIn'){
-              setPann(false)
-            }else{
-              setPann(true)
-            }
-          }} */
 
-          onPanningStop={(e) => {
+           onPanningStart={(e) => {
+            if(e.instance.setup.panning.disabled !== true){
+              setPann(true)
+            }else{
+              setPann(false)
+            }
+          }}
+       
+          onPanningStop={ (e) => {
               if (e.instance.setup.doubleClick.mode !== 'zoomIn' ) {
-                setScale('zoomIn')
-                scrollear();
+                setScale('zoomIn') 
+                setPann(false)
               }
               else {
-                setScale('reset')
+                setScale('reset') 
+                setPann(true)
               }
   }}
           
@@ -88,9 +117,10 @@ const scrollear = () => {
       </TransformComponent>
         </TransformWrapper>
           
-        <h4>Compartir Archivito</h4>
-        <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
-        <button onClick={() => {shareData()}}>Compartir</button>
+        <h4>Compartir Archivo</h4>
+        {/* <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
+        <button onClick={() => {shareData()}}>Compartir</button> */}
+        <button onClick={() => shareAcross(archivo)}>Compartir</button>
     </>
   );
 }

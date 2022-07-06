@@ -7,7 +7,6 @@
   pointer-events: none;
 }
 .document-scroll{
-  overflow-y:auto;
   width: 100% !important;
   
 }
