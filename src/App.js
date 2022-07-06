@@ -32,7 +32,7 @@ function App() {
     async function getArchivo(){
       const imagen = await fetch('https://picsum.photos/200/300');
       const blob = await imagen.blob();
-      const files = new File([blob], 'archivo.pdf', {type: 'archivo/pdf'});
+      const files = new File([blob], 'image.png', {type: 'image/png'});
       setFiles(files);
     }
     getArchivo();
