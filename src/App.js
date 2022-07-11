@@ -59,16 +59,17 @@ function App() {
 
 const [scale, setScale] = useState(1);
 const [pann, setPann] = useState(true);
+const [zoom, setZoom] = useState('reset');
 
 
   return (
     <>
-      Holis
+      Holanda
       <TransformWrapper
          centerOnInit
          initialScale={1}
           panning={{disabled:pann, velocityDisabled: true}} //desactiva vista panoramica
-          doubleClick={{step: scale}}
+          doubleClick={{mode:zoom, step: scale}}
            /* onZoom={() => console.log('onZoom')} */
           /* onPanning={() => console.log('onPanning')} */
           /* onPanningStop={() => console.log('onPanningStop')} */
@@ -77,11 +78,13 @@ const [pann, setPann] = useState(true);
           /* onWheelStop={() => console.log('onWheelStop')} */
           onPanningStart={(e) => {
             if(e.state.scale !== 1){
+              setZoom('reset')
               setScale(-1)
               setPann(false)
               console.log('entro');
             }else{
-              setScale(0.3)
+              setZoom('zoomIn')
+              setScale(1)
               setPann(true)
               console.log('salio');
             }
