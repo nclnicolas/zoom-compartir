@@ -63,7 +63,7 @@ const [pann, setPann] = useState(true);
 
   return (
     <>
-      Holanda
+      Holis
       <TransformWrapper
          centerOnInit
          initialScale={1}
@@ -81,7 +81,7 @@ const [pann, setPann] = useState(true);
               setPann(false)
               console.log('entro');
             }else{
-              setScale(10)
+              setScale(0.3)
               setPann(true)
               console.log('salio');
             }
