@@ -63,7 +63,7 @@ const [pann, setPann] = useState(true);
 
   return (
     <>
-      Holanda
+      Holis
       <TransformWrapper
          centerOnInit
          initialScale={1}
@@ -75,7 +75,7 @@ const [pann, setPann] = useState(true);
          /*  onPanningStart={() => console.log('onPanningStar')} */
           /* onWheelStart={() => console.log('onWheelStar')} */
           /* onWheelStop={() => console.log('onWheelStop')} */
-          onPanningStop={(e) => {
+          onPanningStart={(e) => {
             if(e.state.scale !== 1){
               setScale(-58)
               setPann(false)
