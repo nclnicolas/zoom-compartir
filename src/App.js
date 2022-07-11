@@ -31,7 +31,8 @@ function App() {
   useEffect(() => {
     async function getArchivo(){
       const blob = await Telecentro;
-      const files = new File([blob], `${archivo.title}.pdf`, {type: 'application/pdf'});
+      const titulo ='servicio_de_factura'
+      const files = new File([blob], `${titulo}.pdf`, {type: 'application/pdf'});
       setFiles(files);
     }
     getArchivo();
@@ -56,45 +57,35 @@ function App() {
   }
 
 
-const [scale, setScale] = useState('reset');
-const [pann, setPann] = useState();
+const [scale, setScale] = useState(1);
+const [pann, setPann] = useState(true);
 
-/* const scrollear = () => {
-  setPann(!pann)
-} */
+
   return (
     <>
-      Holis
+      Holanda
       <TransformWrapper
-         defaultScale={1}
-         /* initialPositionX={100}
-         initialPositionY={200} */
-         /* disabled={true} */
-         /* centerOnInit
-         centerZoomedOut */
-          /* alignmentAnimation={{ disabled: true}} */
+         centerOnInit
+         initialScale={1}
           panning={{disabled:pann, velocityDisabled: true}} //desactiva vista panoramica
-
-          doubleClick={{mode: scale}}
-
-           onPanningStart={(e) => {
-            if(e.instance.setup.panning.disabled !== true){
-              setPann(true)
-            }else{
+          doubleClick={{step: scale}}
+           /* onZoom={() => console.log('onZoom')} */
+          /* onPanning={() => console.log('onPanning')} */
+          /* onPanningStop={() => console.log('onPanningStop')} */
+         /*  onPanningStart={() => console.log('onPanningStar')} */
+          /* onWheelStart={() => console.log('onWheelStar')} */
+          /* onWheelStop={() => console.log('onWheelStop')} */
+          onPanningStop={(e) => {
+            if(e.state.scale !== 1){
+              setScale(-58)
               setPann(false)
+              console.log('entro');
+            }else{
+              setScale(1)
+              setPann(true)
+              console.log('salio');
             }
           }}
-       
-          onPanningStop={ (e) => {
-              if (e.instance.setup.doubleClick.mode !== 'zoomIn' ) {
-                setScale('zoomIn') 
-                setPann(false)
-              }
-              else {
-                setScale('reset') 
-                setPann(true)
-              }
-  }}
           
         >
           <TransformComponent >
@@ -103,11 +94,10 @@ const [pann, setPann] = useState();
         {Array.from(
           new Array(numPages),
           (el, index) => (
-          
             <Page 
-            
             key={`page_${index+1}`}
             pageNumber={index+1}
+          
             />
           )
         )}
