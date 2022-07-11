@@ -64,7 +64,7 @@ const [zoom, setZoom] = useState('reset');
 
   return (
     <>
-      Holanda
+      Holis
       <TransformWrapper
          centerOnInit
          initialScale={1}
@@ -79,12 +79,12 @@ const [zoom, setZoom] = useState('reset');
           onPanningStart={(e) => {
             if(e.state.scale !== 1){
               setZoom('reset')
-              setScale(-1)
+              
               setPann(false)
               console.log('entro');
             }else{
               setZoom('zoomIn')
-              setScale(1)
+              
               setPann(true)
               console.log('salio');
             }
