@@ -64,12 +64,12 @@ const [zoom, setZoom] = useState('reset');
 
   return (
     <>
-      Holis
+      Holanda
       <TransformWrapper
          centerOnInit
          initialScale={1}
           panning={{disabled:pann, velocityDisabled: true}} //desactiva vista panoramica
-          doubleClick={{mode:zoom, step: scale}}
+          doubleClick={{mode:zoom}}
            /* onZoom={() => console.log('onZoom')} */
           /* onPanning={() => console.log('onPanning')} */
           /* onPanningStop={() => console.log('onPanningStop')} */
