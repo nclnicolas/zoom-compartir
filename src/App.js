@@ -80,12 +80,12 @@ const [zoom, setZoom] = useState('reset');
           onPanningStart={(e) => {
             if(e.state.scale !== 1 && e.instance.setup.doubleClick.mode !== 'reset'){
               setZoom('reset')
-              setScale(-1)
+              /* setScale(-1) */
               setPann(false)
               console.log('entro');
             }else{
               setZoom('zoomIn')
-              setScale(1)
+              /* setScale(1) */
               setPann(true)
               console.log('salio');
             }
