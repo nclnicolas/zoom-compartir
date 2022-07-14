@@ -7,7 +7,7 @@ import Telecentro from "./assets/img/Telecentro.pdf";
 function App() {
   const [numPages, setnumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
-  const [files, setFiles] = useState(null);
+  const [file, setFile] = useState(null);
 
   function onDocumentLoadSuccess({ numPages }) {
     setnumPages(numPages);
@@ -28,12 +28,12 @@ function App() {
 
   useEffect(() => {
     async function getArchivo() {
-      const blob = await Telecentro;
-      const titulo = "servicio_de_factura";
-      const files = new File([blob], `${titulo}.pdf`, {
+      const imagen = await fetch('http://localhost:3001/Telecentro')
+      const blob = await imagen.blob();
+      const file = new File([blob], `ServicioFactura.pdf`, {
         type: "application/pdf",
       });
-      setFiles(files);
+      setFile(file);
     }
     getArchivo();
   }, []);
@@ -41,8 +41,7 @@ function App() {
   const archivo = {
     title: "Web share con archivo",
     text: "Ademas de textos",
-    url: "https://nico.com",
-    files: [files],
+    files: [file],
   };
 
   function shareAcross(objeto) {
@@ -62,7 +61,7 @@ function App() {
 
   return (
     <>
-      Holanda
+      Holis
       <TransformWrapper
         centerOnInit
         centerZoomedOut
