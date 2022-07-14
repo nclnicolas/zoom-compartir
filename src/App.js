@@ -68,7 +68,7 @@ function App() {
         centerZoomedOut
         initialScale={1}
         panning={{ disabled: pann}} //desactiva vista panoramica
-        doubleClick={{ mode: zoom}}
+        doubleClick={{ mode: zoom, step: scale }}
         /* onZoom={() => console.log('onZoom')} */
         /* onPanning={() => console.log('onPanning')} */
         /* onPanningStop={() => console.log('onPanningStop')} */
