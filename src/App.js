@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-import Telecentro from "./assets/img/Telecentro.pdf";
+/* import Telecentro from "./assets/img/Telecentro.pdf"; */
 
 function App() {
   const [numPages, setnumPages] = useState(null);
@@ -28,7 +28,8 @@ function App() {
 
   useEffect(() => {
     async function getArchivo() {
-      const imagen = await fetch('Telecentro.pdf')
+      const imagen = await fetch('http://localhost:3001/Telecentro.pdf')
+      console.log('aca vemos el fetch', imagen);
       const blob = await imagen.blob();
       const file = new File([blob], `ServicioFactura.pdf`, {
         type: "application/pdf",
@@ -62,7 +63,7 @@ function App() {
   return (
     <>
       Holanda
-      <TransformWrapper
+     { <TransformWrapper
         centerOnInit
         centerZoomedOut
         initialScale={1}
@@ -92,7 +93,7 @@ function App() {
           <div>
             <Document
               className="document-scroll"
-              file={Telecentro}
+              /* file={Telecentro} */
               onLoadSuccess={onDocumentLoadSuccess}
             >
               {Array.from(new Array(numPages), (el, index) => (
@@ -101,7 +102,7 @@ function App() {
             </Document>
           </div>
         </TransformComponent>
-      </TransformWrapper>
+      </TransformWrapper>}
       <h4>Compartir Archivo</h4>
       {/* <input type='file' multiple onChange={(e) => {setFiles(e.target.files)}} ></input>
         <button onClick={() => {shareData()}}>Compartir</button> */}
