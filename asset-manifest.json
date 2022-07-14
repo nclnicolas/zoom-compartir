@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/zoom-compartir/static/css/main.e4148a3c.css",
-    "main.js": "/zoom-compartir/static/js/main.5b4d4b72.js",
+    "main.js": "/zoom-compartir/static/js/main.52a73ba2.js",
     "pdf.worker.js": "/zoom-compartir/e7e915313973ba1d49f9bb2a1998626e.js",
     "index.html": "/zoom-compartir/index.html",
     "main.e4148a3c.css.map": "/zoom-compartir/static/css/main.e4148a3c.css.map",
-    "main.5b4d4b72.js.map": "/zoom-compartir/static/js/main.5b4d4b72.js.map"
+    "main.52a73ba2.js.map": "/zoom-compartir/static/js/main.52a73ba2.js.map"
   },
   "entrypoints": [
     "static/css/main.e4148a3c.css",
-    "static/js/main.5b4d4b72.js"
+    "static/js/main.52a73ba2.js"
   ]
 }
