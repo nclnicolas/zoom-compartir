@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     async function getArchivo() {
-      const imagen = await fetch('http://localhost:3001/Telecentro.pdf')
+      const imagen = await fetch('Telecentro.pdf')
       console.log('aca vemos el fetch', imagen);
       const blob = await imagen.blob();
       const file = new File([blob], `ServicioFactura.pdf`, {
