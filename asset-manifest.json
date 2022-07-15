@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/zoom-compartir/static/css/main.e4148a3c.css",
-    "main.js": "/zoom-compartir/static/js/main.e991ceea.js",
+    "main.css": "/zoom-compartir/static/css/main.7f171b93.css",
+    "main.js": "/zoom-compartir/static/js/main.c718391d.js",
     "pdf.worker.js": "/zoom-compartir/e7e915313973ba1d49f9bb2a1998626e.js",
+    "static/media/Telecentro.pdf": "/zoom-compartir/static/media/Telecentro.c761a458ffbb1f6f0cdd.pdf",
     "index.html": "/zoom-compartir/index.html",
-    "main.e4148a3c.css.map": "/zoom-compartir/static/css/main.e4148a3c.css.map",
-    "main.e991ceea.js.map": "/zoom-compartir/static/js/main.e991ceea.js.map"
+    "main.7f171b93.css.map": "/zoom-compartir/static/css/main.7f171b93.css.map",
+    "main.c718391d.js.map": "/zoom-compartir/static/js/main.c718391d.js.map"
   },
   "entrypoints": [
-    "static/css/main.e4148a3c.css",
-    "static/js/main.e991ceea.js"
+    "static/css/main.7f171b93.css",
+    "static/js/main.c718391d.js"
   ]
 }
