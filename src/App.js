@@ -1,13 +1,24 @@
-import "./App.css";
+
 import React, { useEffect, useState } from "react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import { Document, Page } from "react-pdf/dist/esm/entry.webpack";
-/* import Telecentro from "./assets/img/Telecentro.pdf"; */
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Telecentro from "./assets/img/Telecentro.pdf";
+import {FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon} from 'react-share';
+import { Link } from "react-router-dom";
+import Pdf from './Pdf';
 
 function App() {
   const [numPages, setnumPages] = useState(null);
   const [pageNumber, setPageNumber] = useState(1);
   const [file, setFile] = useState(null);
+
+  const [show, setShow] = useState(false);//-------MODAL
+  const handleClose = () => setShow(false);//-------MODAL
+  const handleShow = () => setShow(true);//-------MODAL
+  const shareUrl ='http://localhost:3000/pdf';//-------MODAL
 
   function onDocumentLoadSuccess({ numPages }) {
     setnumPages(numPages);
@@ -62,6 +73,44 @@ function App() {
 
   return (
     <>
+      {/* ---MODAL----- */}
+
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <FacebookShareButton
+          url={shareUrl}
+          quote={'Enviamos el archivo'}
+          >
+            <FacebookIcon size={40} round={true} />
+          </FacebookShareButton>
+
+          <WhatsappShareButton
+          url={shareUrl}
+          quote={'Enviamos el archivo'}
+          >
+            <WhatsappIcon size={40} round={true} />
+          </WhatsappShareButton>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* ------------------------------- */}
+
+
       Holanda
      { <TransformWrapper
         centerOnInit
@@ -108,6 +157,8 @@ function App() {
         <button onClick={() => {shareData()}}>Compartir</button>
         <h4>Compartir Archivo</h4>
       <button onClick={() => shareAcross(archivo)}>Compartir</button>
+      <h4>URL</h4>
+      <Link to='/pdf'><button>Compartir</button></Link>
     </>
   );
 }
