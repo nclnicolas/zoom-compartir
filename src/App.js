@@ -18,7 +18,7 @@ function App() {
   const [show, setShow] = useState(false);//-------MODAL
   const handleClose = () => setShow(false);//-------MODAL
   const handleShow = () => setShow(true);//-------MODAL
-  const shareUrl ='http://localhost:3000/pdf';//-------MODAL
+  const shareUrl ='http://localhost:3000/pdfSec';//-------MODAL
 
   function onDocumentLoadSuccess({ numPages }) {
     setnumPages(numPages);
@@ -158,7 +158,7 @@ function App() {
         <h4>Compartir Archivo</h4>
       <button onClick={() => shareAcross(archivo)}>Compartir</button>
       <h4>URL</h4>
-      <Link to='/pdf'><button>Compartir</button></Link>
+      <Link to='/pdfSec'><button>Compartir</button></Link>
     </>
   );
 }
