@@ -9,6 +9,7 @@ import Telecentro from "./assets/img/Telecentro.pdf";
 import {FacebookShareButton, FacebookIcon, WhatsappShareButton, WhatsappIcon} from 'react-share';
 import { Link } from "react-router-dom";
 import Pdf from './Pdf';
+import PdfSec from './PdfSec'
 
 function App() {
   const [numPages, setnumPages] = useState(null);
@@ -18,7 +19,7 @@ function App() {
   const [show, setShow] = useState(false);//-------MODAL
   const handleClose = () => setShow(false);//-------MODAL
   const handleShow = () => setShow(true);//-------MODAL
-  const shareUrl ='http://localhost:3000/pdfSec';//-------MODAL
+  const shareUrl ={Telecentro};//-------MODAL
 
   function onDocumentLoadSuccess({ numPages }) {
     setnumPages(numPages);
@@ -28,8 +29,8 @@ function App() {
   const shareData = async () => {
     if(navigator.share && navigator.canShare({files:file})){
       await navigator.share({
-        title: 'Hola buen dia',
-        text: 'Hola hola',
+        title: 'Factura_Movistar_Mes_Julio.pdf',
+        text: 'Factura_Movistar_Mes_Julio.pdf',
         files: file
       })
     }else{
@@ -51,8 +52,8 @@ function App() {
   }, []);
 
   const archivo = {
-    title: "Web share con archivo",
-    text: "Ademas de textos",
+    title: "Factura_Movistar_Mes_Julio.pdf",
+    text: "Factura_Movistar_Mes_Julio.pdf",
     files: [file],
   };
 
